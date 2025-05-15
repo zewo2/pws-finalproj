@@ -1,0 +1,88 @@
+body {
+    background-color: whitesmoke;
+    /*background: repeating-radial-gradient(red,blue,yellow,purple,green,orange);*/
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 80%;
+}
+
+/* header {
+    background: linear-gradient(to right,lightblue, beige, lightblue);
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    padding: 5px 10px;
+
+} */
+
+main {
+    padding-top: 5px;
+}
+
+/* footer {
+    background: lightblue;
+    padding: 5px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+} */
+
+h1 {
+    color:steelblue;
+    text-align: center;
+}
+
+h2 {
+    color:slategrey;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+h2#cont-istec {
+    color:slategrey;
+    text-align: left;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+h2#course {
+
+    color:slategrey;
+    text-align: center;
+    padding-top: 80px;
+}
+
+table, th, td {
+    /*background: repeating-radial-gradient(red,blue,yellow,purple,green,orange);*/
+    border: 1px solid black;
+    border-spacing: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+table {
+    border: 1px solid lightgrey;
+    box-shadow: 0 0 5px black;
+    border-radius: 10px;
+}
+
+table.centertable {
+    background-color: lightblue;
+    width: 75%;
+    margin: 0px auto;
+}
+
+/* td:hover {
+    background-color: #e71919;
+    color: #000000;
+} */
+
+th {
+    background-color: lightsalmon;
+}
+
+td {
+    background-color: white;
+}
