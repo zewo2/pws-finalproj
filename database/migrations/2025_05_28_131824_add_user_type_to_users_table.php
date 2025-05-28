@@ -9,19 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('favs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('users', function($table) {
+            $table->integer('user_type')->after('email')->default(9);
         });
     }
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::dropIfExists('favs');
+        Schema::table('users', function($table) {
+            $table->dropColumn('user_type');
+        });
     }
 };
+

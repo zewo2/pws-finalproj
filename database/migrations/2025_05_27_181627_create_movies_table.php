@@ -10,12 +10,20 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+   {
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('image')->nullable();
+            $table->string('trailer_url')->nullable();
+            $table->text('description')->nullable();
+            $table->date('release_date')->nullable();
+            $table->string('director')->nullable();
+            $table->string('genre')->nullable();
+            $table->decimal('rating', 3, 1)->nullable(); // Rating out of 10
             $table->timestamps();
         });
-    }
+   }
 
     /**
      * Reverse the migrations.
