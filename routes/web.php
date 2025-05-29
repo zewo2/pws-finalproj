@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 // Home
 Route::get('/', [HomeController::class, 'index']);
@@ -13,7 +16,7 @@ Route::get('/laraveldocs', [HomeController::class, 'laraveldocs'])-> name('world
 
 
 //Dashboard
-Route::get('/dashboard', [DashboardController::class, 'dashboard'])-> name('world.dashboard')->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])-> name('dashboard.dashboard')->middleware('auth');
 
 
 // Users com auth
@@ -29,12 +32,12 @@ Route::resource('admin-users', UserController::class, [
 ])->middleware('auth');
 
 // Register Users
-Route::get('/register-users-add', [UserController::class, 'registeruser_Add'])-> name('users.register_add');
-
-//Rota de post que coleta e envia todos os dados para dentro do código
-Route::post('/register-users-create', [UserController::class, 'registeruser_Create'])-> name('users.register_create');
-
-
+Route::resource('register-users', RegisterController::class, [
+    'names' => [
+        'create' => 'register.usr_add',
+        'store' => 'register.usr_create',
+    ]
+    ]);
 
 // Movies
 

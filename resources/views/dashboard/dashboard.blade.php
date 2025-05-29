@@ -13,11 +13,11 @@
         @if (Auth::user()->user_type == \App\Models\User::TYPE_ADMIN)
         {{-- podemos usar o número do user type, mas usamos a constante para tornar o código mais legivel --}}
             <div class="alert alert-danger" role="alert">
-                Conta de administrador!
+                Administrator account!
             </div>
         @endif
 
-        <h5>Olá {{ Auth::user()->name }}, bem vindo à Dashboard.</h5>
+        <h5>Hello {{ Auth::user()->name }}, welcome to the Dashboard.</h5>
     @endsection
 
 </body>

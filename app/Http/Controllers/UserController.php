@@ -26,7 +26,7 @@ class UserController extends Controller
 
         $usersFromDB = $usersFromDB->get();
 
-        return view('users.users_all', compact('myName', 'contactInfo', 'usersFromDB'));
+        return view('users.users_all', compact('usersFromDB'));
     }
 
     /**

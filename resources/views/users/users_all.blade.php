@@ -18,7 +18,7 @@
 
         <h1 style="text-align: center">User Management Panel</h1>
 
-        <h5>Hello {{ $user->name }}, here is the full user list.</h5>
+        <h5>Hello {{ Auth::user()->name }}, here is the full user list.</h5>
 
         <h6>Interactive user table</h6>
 

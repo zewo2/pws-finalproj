@@ -36,8 +36,8 @@
                             Users
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">User List</a></li>
-                            <li><a class="dropdown-item" href="">Add User</a></li>
+                            <li><a class="dropdown-item" href="{{ route('users.all') }}">User List</a></li>
+                            <li><a class="dropdown-item" href="{{ route('users.add') }}">Add User</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -46,7 +46,7 @@
                             Tasks
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Task List</a></li>
+                            <li><a class="dropdown-item" href="{{ route('world.laraveldocs') }}">Task List</a></li>
                             <li><a class="dropdown-item" href="">Add Task</a></li>
                         </ul>
                     </li>
@@ -57,7 +57,7 @@
         @if (Route::has('login'))
             <nav class="flex items-center justify-end gap-4">
                 @auth
-                    <a href="{{ route('world.dashboard') }}"
+                    <a href="{{ route('dashboard.dashboard') }}"
                         class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                         Dashboard
                     </a>
@@ -71,8 +71,9 @@
                         Log in
                     </a>
 
-                    @if (Route::has('users.add'))
-                        <a href="{{ route('users.add') }}"
+                    @if (Route::has('register.usr_add'))
+                        {{-- This route is for user registration, not admin registration --}}
+                        <a href="{{ route('register.usr_add') }}"
                             class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
                             Register
                         </a>
