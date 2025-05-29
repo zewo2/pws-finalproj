@@ -1,0 +1,58 @@
+body {
+    background-color: grey;
+    /*background: repeating-radial-gradient(red,blue,yellow,purple,green,orange);*/
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 80%;
+}
+
+main {
+    padding-top: 5px;
+}
+
+.navbar-custom {
+    background-color: #000000;
+}
+
+/* Smooth transitions for hover effects */
+.navbar-dark .navbar-nav .nav-link {
+    transition: all 0.3s ease;
+}
+
+/* Hover effect for nav links */
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Dropdown menu styling */
+.navbar-dark .dropdown-menu {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+}
+
+.navbar-dark .dropdown-item {
+    color: #ddd;
+}
+
+.navbar-dark .dropdown-item:hover {
+    background-color: #333;
+    color: white;
+}
+
+h1 {
+    padding-top: 5px;
+    color:whitesmoke;
+    text-align: center;
+}
+
+h2 {
+    color:whitesmoke;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+table, th, td {
+    /*background: repeating-radial-gradient(red,blue,yellow,purple,green,orange);*/
+    border: 1px solid black;
+    text-align: center;
+}

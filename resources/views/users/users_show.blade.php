@@ -31,13 +31,13 @@
                 <div class="text-danger">Invalid Username</div>
             @enderror
         </div>
-        {{-- disabled não manda para o backend
-        no caso de ser o dado necessário para verif, usar o readonly pois este manda para o backend --}}
+
         <div class="mb-3">
             <label for="InputEmail1" class="form-label">Email</label>
             <input name="email" value="{{$user->email}}" disabled type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
             <div id="emailHelp" class="form-text">We will never share your email with third parties.</div>
         </div>
+
         <div class="mb-3">
             <label for="InputPhoto1" class="form-label">Photo</label>
             <input name="user_photo" type="file" accept="image/*" class="form-control" id="InputPhoto1">
@@ -46,6 +46,7 @@
                 <div class="text-danger">Invalid Format</div>
             @enderror
         </div>
+
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="Check1" required>
             <label class="form-check-label" for="Check1">I have a very solid snake</label>
@@ -53,6 +54,7 @@
                 <div class="text-danger">Checkbox not ticked</div>
             @enderror
         </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 

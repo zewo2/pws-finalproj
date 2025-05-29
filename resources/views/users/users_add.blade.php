@@ -21,6 +21,7 @@
                     <div class="text-danger">Invalid Username</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="InputEmail1" class="form-label">Email</label>
                 <input name="email" type="email" class="form-control" id="InputEmail1" aria-describedby="emailHelp" required>
@@ -29,6 +30,7 @@
                     <div class="text-danger">Invalid Email</div>
                 @enderror
             </div>
+
             <div class="mb-3">
                 <label for="InputPassword1" class="form-label">Password</label>
                 <input name="password" type="password" class="form-control" id="InputPassword1" required>
@@ -36,6 +38,7 @@
                     <div class="text-danger">Invalid Password</div>
                 @enderror
             </div>
+
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="Check1" required>
                 <label class="form-check-label" for="Check1">I have a very solid snake</label>
@@ -43,6 +46,7 @@
                     <div class="text-danger">Checkbox not ticked</div>
                 @enderror
             </div>
+
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     @endsection

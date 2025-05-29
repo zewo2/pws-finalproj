@@ -42,26 +42,24 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|max:50',
-            'poster' => 'image',
-            'genre' => 'required|max:10',
-            'director' => 'required|max:25'
+            'poster' => 'required|image',
+            'trailer_url' => 'nullable|url',
+            'description' => 'nullable|max:255',
+            'release_date' => 'nullable|date',
+            'director' => 'required|max:255',
+            'genre' => 'required|max:255',
+            'rating' => 'nullable|numeric|min:0|max:10'
         ]);
 
-        $movieData = [
-            'title' => $request->title,
-            'genre' => $request->genre,
-            'director' => $request->director,
-        ];
-
         if ($request->hasFile('poster')) {
-            $movieData['poster'] = Storage::putFile('moviePosters', $request->poster);
+            $validated['poster'] = $request->file('poster')->store('movie-posters');
         }
 
-        Movie::create($movieData);
+        Movie::create($validated);
 
-        return redirect()->route('movies.all')->with('message', 'Movie successfully created!');
+        return redirect()->route('movies.all')->with('message', 'Movie created successfully!');
     }
 
     /**
@@ -93,28 +91,30 @@ class MovieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|max:50',
-            'poster' => 'image',
-            'genre' => 'required|max:10',
-            'director' => 'required|max:25'
+            'poster' => 'sometimes|image',
+            'trailer_url' => 'nullable|url',
+            'description' => 'nullable|max:255',
+            'release_date' => 'nullable|date',
+            'director' => 'required|max:255',
+            'genre' => 'required|max:255',
+            'rating' => 'nullable|numeric|min:0|max:10'
         ]);
 
-        $updateData = [
-            'title' => $request->title,
-            'genre' => $request->genre,
-            'director' => $request->director,
-        ];
+        $movie = Movie::findOrFail($id);
 
         if ($request->hasFile('poster')) {
-            $updateData['poster'] = Storage::putFile('moviePosters', $request->poster);
+            // Delete old poster if exists
+            if ($movie->poster) {
+                Storage::delete($movie->poster);
+            }
+            $validated['poster'] = $request->file('poster')->store('movie-posters');
         }
 
-        DB::table('movies')
-            ->where('id', $id)
-            ->update($updateData);
+        $movie->update($validated);
 
-        return redirect()->route('movies.all')->with('message', 'Movie sucessfully updated!');
+        return redirect()->route('movies.show', $id)->with('message', 'Movie updated successfully!');
     }
 
     /**

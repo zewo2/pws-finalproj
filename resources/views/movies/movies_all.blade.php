@@ -29,7 +29,7 @@
 
         <br>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-secondary">
             <thead>
                 <tr>
                     <th scope="col">Poster</th>
@@ -45,7 +45,7 @@
                 @foreach ($moviesFromDB as $movie)
                     <tr>
                         <td><img src="{{$movie->poster ?asset('storage/'.$movie->poster) : asset('images/defaultuser.jpg')}}"
-                             alt="" height="240px" width="100px"></td>
+                             alt="" height="240px" width="160px"></td>
                         <th scope="row">{{ $movie->id }}</th>
                         <td>{{ $movie->title }}</td>
                         <td>{{ $movie->director }}</td>

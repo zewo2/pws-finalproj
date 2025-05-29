@@ -16,7 +16,6 @@
 
     <h4>Movie Data - {{$movie->title}}</h4>
 
-    {{-- Usamos na mesma o post para o update para termos acesso ao request e às validações --}}
     <form method="POST" action="{{ route('movies.update', $movie->id) }}" enctype="multipart/form-data">
 
         {{-- enctype="multipart/form-data" permite aos formulários processar ficheiros que não sejam strings --}}
@@ -32,6 +31,7 @@
                 <div class="text-danger">Invalid Title</div>
             @enderror
         </div>
+
         <div class="mb-3">
             <label for="InputPhoto1" class="form-label">Poster</label>
             <input name="poster" type="file" accept="image/*" class="form-control" id="InputPhoto1">
@@ -40,8 +40,7 @@
                 <div class="text-danger">Invalid Format</div>
             @enderror
         </div>
-        {{-- disabled não manda para o backend
-        no caso de ser o dado necessário para verif, usar o readonly pois este manda para o backend --}}
+
         <div class="mb-3">
             <label for="genreSelect" class="form-label">Genre</label>
             <select name="genre" class="form-select" id="genreSelect" required>
@@ -62,6 +61,32 @@
                 <div class="text-danger">Invalid genre</div>
             @enderror
         </div>
+
+        <div class="mb-3">
+            <label for="InputTrailer1" class="form-label">Trailer URL</label>
+            <input name="trailer_url" value="{{$movie->trailer_url}}" type="url" class="form-control" id="InputTrailer1">
+            @error('trailer_url')
+                <div class="text-danger">Invalid URL format</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="InputDescription1" class="form-label">Description</label>
+            <textarea name="description" class="form-control" id="InputDescription1" maxlength="255">{{$movie->description}}</textarea>
+            <small class="text-muted">Max 255 characters</small>
+            @error('description')
+                <div class="text-danger">Description too long</div>
+            @enderror
+        </div>
+
+        <div class="mb-3">
+            <label for="InputReleaseDate1" class="form-label">Release Date</label>
+            <input name="release_date" value="{{$movie->release_date}}" type="date" class="form-control" id="InputReleaseDate1">
+            @error('release_date')
+                <div class="text-danger">Invalid date</div>
+            @enderror
+        </div>
+
         <div class="mb-3">
             <label for="Inputdirector1" class="form-label">Director</label>
             <input name="director" value="{{$movie->director}}" type="text" class="form-control" id="Inputdirector1" aria-describedby="emailHelp" required>
@@ -69,6 +94,15 @@
                 <div class="text-danger">Invalid Director</div>
             @enderror
         </div>
+
+        <div class="mb-3">
+            <label for="InputRating1" class="form-label">Rating (0-10)</label>
+            <input name="rating" value="{{$movie->rating}}" type="number" step="0.1" min="0" max="10" class="form-control" id="InputRating1">
+            @error('rating')
+                <div class="text-danger">Must be between 0 and 10</div>
+            @enderror
+        </div>
+
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="Check1" required>
             <label class="form-check-label" for="Check1">I have a very solid snake</label>
@@ -76,6 +110,7 @@
                 <div class="text-danger">Checkbox not ticked</div>
             @enderror
         </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 

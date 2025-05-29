@@ -29,7 +29,7 @@
 
         <br>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-secondary">
             <thead>
                 <tr>
                     <th scope="col">Photo</th>
