@@ -13,21 +13,51 @@ class MovieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // For public movie listing
     {
-        $search = request()->search;
+        $query = Movie::query();
 
-        $moviesFromDB = DB::table('movies');
-
-        if($search) {
-            $moviesFromDB = $moviesFromDB->where('title', 'LIKE', "%{$search}%")
-                ->orWhere('genre', 'LIKE', "%{$search}%");
+        // Search filter
+        if ($search = request('search')) {
+            $query->where('title', 'like', "%{$search}%");
         }
 
-        $moviesFromDB = $moviesFromDB->get();
+        // Genre filter
+        if ($genre = request('genre')) {
+            $query->where('genre', $genre);
+        }
 
-        return view('movies.movies_all', compact('moviesFromDB'));
+        // Sort filter
+        $sort = request('sort', 'newest');
+        $query->orderBy('created_at', $sort === 'newest' ? 'desc' : 'asc');
+
+        // Get genres for filter dropdown
+        $genres = Movie::select('genre')
+            ->distinct()
+            ->orderBy('genre')
+            ->pluck('genre');
+
+        return view('movies.movies_index', [
+            'movies' => $query->paginate(12),
+            'genres' => $genres
+        ]);
     }
+
+    public function all() // For backend maintenance
+    {
+    $search = request()->search;
+
+    $movies = Movie::query();
+
+    if($search) {
+        $movies->where('title', 'LIKE', "%{$search}%")
+               ->orWhere('genre', 'LIKE', "%{$search}%");
+    }
+
+    $moviesFromDB = $movies->get();
+
+    return view('movies.movies_all', ['moviesFromDB' => $moviesFromDB]);
+}
 
     /**
      * Show the form for creating a new resource.
@@ -65,13 +95,52 @@ class MovieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        $movie = DB::table('movies')
-            ->where('id', $id)
-            ->first();
-
+        $movie = Movie::findOrFail($id);
         return view('movies.movies_show', compact('movie'));
+    }
+
+    public function publicShow(Movie $movie)
+    {
+        return view('movies.movies_publicshow', compact('movie'));
+    }
+
+    public function toggleFavorite(Movie $movie)
+    {
+        auth()->user()->favorites()->toggle($movie->id);
+
+        return back()->with('message', $movie->isFavoritedBy(auth()->user())
+            ? 'Added to favorites!'
+            : 'Removed from favorites!');
+    }
+
+    public function favorites()
+    {
+        $query = auth()->user()->favorites();
+
+        // Apply filters
+        if ($search = request('search')) {
+            $query->where('title', 'like', "%{$search}%");
+        }
+
+        if ($genre = request('genre')) {
+            $query->where('genre', $genre);
+        }
+
+        $sort = request('sort', 'newest');
+        $query->orderBy('created_at', $sort === 'newest' ? 'desc' : 'asc');
+
+        $genres = auth()->user()->favorites()
+            ->select('genre')
+            ->distinct()
+            ->orderBy('genre')
+            ->pluck('genre');
+
+        return view('movies.movies_favs', [
+            'movies' => $query->paginate(12),
+            'genres' => $genres
+        ]);
     }
 
     /**
@@ -89,9 +158,11 @@ class MovieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        $validated = $request->validate([
+        public function update(Request $request, $id)
+        {
+            $movie = Movie::findOrFail($id);
+
+            $validated = $request->validate([
             'title' => 'required|max:50',
             'poster' => 'sometimes|image',
             'trailer_url' => 'nullable|url',
@@ -102,10 +173,7 @@ class MovieController extends Controller
             'rating' => 'nullable|numeric|min:0|max:10'
         ]);
 
-        $movie = Movie::findOrFail($id);
-
         if ($request->hasFile('poster')) {
-            // Delete old poster if exists
             if ($movie->poster) {
                 Storage::delete($movie->poster);
             }
@@ -114,7 +182,7 @@ class MovieController extends Controller
 
         $movie->update($validated);
 
-        return redirect()->route('movies.show', $id)->with('message', 'Movie updated successfully!');
+        return redirect()->route('movies.show', $movie->id)->with('message', 'Movie updated!');
     }
 
     /**

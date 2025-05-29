@@ -16,13 +16,10 @@
 
     <h4>Movie Data - {{$movie->title}}</h4>
 
-    <form method="POST" action="{{ route('movies.update', $movie->id) }}" enctype="multipart/form-data">
-
-        {{-- enctype="multipart/form-data" permite aos formulários processar ficheiros que não sejam strings --}}
-        @csrf {{-- validação de segurança do Laravel --}}
-
-        @method('PUT') {{-- método PUT para atualizar dados --}}
-        <input type="hidden" name="id" value="{{$movie->id}}">
+<form method="POST" action="{{ route('movies.update', $movie) }}">
+    @csrf
+    @method('PUT')
+    <input type="hidden" name="id" value="{{ $movie->id }}">
 
         <div class="mb-3">
             <label for="InputTitle1" class="form-label">Title</label>

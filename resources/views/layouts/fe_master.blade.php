@@ -28,11 +28,11 @@
                     <a class="nav-link" aria-current="page" href="{{ route('world.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('world.home') }}">Movies</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('movies.index') }}">Movies</a>
                 </li>
                 @auth
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('world.home') }}">Favorites</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('movies.favorites') }}">Favorites</a>
                 </li>
                 @endauth
             </ul>
@@ -48,14 +48,14 @@
 
                 @if(in_array(auth()->user()->user_type, [1, 2])) <!-- Show for admin (1) and editor (2) -->
                     <a href="{{ route('maintenance.dashboard') }}" class="btn btn-secondary">
-                        <i class="fas fa-tools me-1"></i> Maintenance
+                         Maintenance
                     </a>
                 @endif
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="btn btn-warning" type="submit">
-                        <i class="fas fa-sign-out-alt me-1"></i> Logout
+                         Logout
                     </button>
                 </form>
             @else

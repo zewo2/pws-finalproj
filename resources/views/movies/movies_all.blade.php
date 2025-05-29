@@ -38,7 +38,7 @@
                     <th scope="col">Director</th>
                     <th scope="col">Genre</th>
                     <th scope="col"></th>
-                    <th scope="col"><a href="{{ route('movies.add') }}" class="btn btn-success">Add Movie</th>
+                    <th scope="col"><a href="{{ route('movies.create') }}" class="btn btn-success">Add Movie</th>
                 </tr>
             </thead>
             <tbody>
