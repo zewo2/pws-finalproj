@@ -11,7 +11,7 @@
     @section('content')
         <h1 style="text-align: center">Movie Creation Form</h1>
 
-        <form method="POST" action="{{ route('movies.create') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('movies.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="InputTitle1" class="form-label">Title</label>

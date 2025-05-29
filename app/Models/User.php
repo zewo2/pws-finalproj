@@ -51,4 +51,10 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Movie::class, 'favs', 'user_id', 'movie_id')
+            ->withTimestamps();
+    }
 }

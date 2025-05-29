@@ -44,7 +44,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('movies.all') }}">Movie List</a></li>
-                        <li><a class="dropdown-item" href="{{ route('movies.add') }}">Add Movie</a></li>
+                        <li><a class="dropdown-item" href="{{ route('movies.create') }}">Add Movie</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,14 +60,14 @@
 
                 @if(in_array(auth()->user()->user_type, [1, 2])) <!-- Show for admin (1) and editor (2) -->
                     <a href="{{ route('maintenance.dashboard') }}" class="btn btn-secondary">
-                        <i class="fas fa-tools me-1"></i> Maintenance
+                         Maintenance
                     </a>
                 @endif
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button class="btn btn-warning" type="submit">
-                        <i class="fas fa-sign-out-alt me-1"></i> Logout
+                         Logout
                     </button>
                 </form>
             @else

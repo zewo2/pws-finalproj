@@ -22,7 +22,7 @@
                             @foreach ($moviesChunk as $movie)
                                 <div class="col-md-3 col-6">
                                     <div class="movie-card">
-                                        <a href="{{ route('movies.show', $movie->id) }}">
+                                        <a href="{{ route('movies.publicshow', $movie->id) }}">
                                             <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}">
                                             <div class="movie-info">
                                                 <h5>{{ $movie->title }}</h5>
@@ -67,7 +67,7 @@
                             @foreach ($moviesByGenre[$genre]->take(4) as $movie)
                                 <div class="col-md-3 col-6">
                                     <div class="movie-card">
-                                        <a href="{{ route('movies.show', $movie->id) }}">
+                                        <a href="{{ route('movies.publicshow', $movie->id) }}">
                                             <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}">
                                             <div class="movie-info">
                                                 <h5>{{ $movie->title }}</h5>
@@ -104,7 +104,7 @@
                             @foreach ($moviesChunk as $movie)
                                 <div class="col-md-3 col-6">
                                     <div class="movie-card">
-                                        <a href="{{ route('movies.show', $movie->id) }}">
+                                        <a href="{{ route('movies.publicshow', $movie->id) }}">
                                             <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}">
                                             <div class="movie-info">
                                                 <h5>{{ $movie->title }}</h5>
