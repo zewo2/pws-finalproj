@@ -12,9 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         // ... existing middleware registrations
-
         $middleware->alias([
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
+    })
+    ->withMiddleware(function (Middleware $middleware) {
+            $middleware->alias([
+            'admin_or_editor' => \App\Http\Middleware\AdminOrEditorMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -93,8 +93,6 @@ class UserController extends Controller
 
         $updateData = [
             'name' => $request->name,
-            'address' => $request->address,
-            'nif' => $request->nif
         ];
 
         if ($request->hasFile('user_photo')) {

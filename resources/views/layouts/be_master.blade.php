@@ -15,74 +15,75 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ route('world.home') }}">Site Maintenance</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ route('world.home') }}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('world.laraveldocs') }}">Laravel</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Users
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">User List</a></li>
-                            <li><a class="dropdown-item" href="">Add User</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Tasks
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Task List</a></li>
-                            <li><a class="dropdown-item" href="">Add Task</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ route('world.home') }}">MSF Movies</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ route('world.home') }}">Home</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Users
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('users.all') }}">User List</a></li>
+                        <li><a class="dropdown-item" href="{{ route('users.add') }}">Add User</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Tasks
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="{{ route('world.movies_all') }}">Movie List</a></li>
+                        <li><a class="dropdown-item" href="{{ route('movies.movies_add') }}">Add Movie</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
+    </div>
 
-        @if (Route::has('login'))
-            <nav class="flex items-center justify-end gap-4">
-                @auth
-                    <a href="{{ route('world.dashboard') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                        Dashboard
+    @if (Route::has('login'))
+        <div class="d-flex gap-2 align-items-center">
+            @auth
+                <a href="{{ route('dashboard.dashboard') }}" class="btn btn-primary">
+                    Dashboard
+                </a>
+
+                @if(in_array(auth()->user()->user_type, [1, 2])) <!-- Show for admin (1) and editor (2) -->
+                    <a href="{{ route('maintenance.dashboard') }}" class="btn btn-secondary">
+                        <i class="fas fa-tools me-1"></i> Maintenance
                     </a>
-                    <form method="POST" action="{{route('logout')}}">
-                        @csrf
-                        <button class="btn btn-warning" type="submit">Logout</button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal">
-                        Log in
+                @endif
+
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button class="btn btn-warning" type="submit">
+                        <i class="fas fa-sign-out-alt me-1"></i> Logout
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-success">
+                    Login
+                </a>
+
+                @if (Route::has('register.usr_add'))
+                    <a href="{{ route('register.usr_add') }}" class="btn btn-warning">
+                        Register
                     </a>
-
-                    @if (Route::has('register.usr_add'))
-                        {{-- This route is for user registration, not admin registration --}}
-                        <a href="{{ route('register.usr_add') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
-                            Register
-                        </a>
-                    @endif
-                @endauth
-            </nav>
-        @endif
-
-    </nav>
+                @endif
+            @endauth
+        </div>
+    @endif
+</nav>
 
 
     <div class="container">

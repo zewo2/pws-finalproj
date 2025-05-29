@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MaintenanceController;
 
 // Home
 Route::get('/', [HomeController::class, 'index']);
@@ -18,18 +19,25 @@ Route::get('/laraveldocs', [HomeController::class, 'laraveldocs'])-> name('world
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])-> name('dashboard.dashboard')->middleware('auth');
 
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/maintenance-dashboard', [MaintenanceController::class, 'index'])
+         ->name('maintenance.dashboard');
+});
 
 // Users com auth
-Route::resource('admin-users', UserController::class, [
-    'names' => [
-        'index' => 'users.all',
-        'create' => 'users.add',
-        'store' => 'users.create',
-        'show' => 'users.show',
-        'update' => 'users.update',
-        'destroy' => 'users.delete',
-    ]
-])->middleware('auth');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::resource('admin-users', UserController::class, [
+        'names' => [
+            'index' => 'users.all',
+            'create' => 'users.add',
+            'store' => 'users.create',
+            'show' => 'users.show',
+            'update' => 'users.update',
+            'destroy' => 'users.delete',
+        ],
+        'parameters' => ['admin-users' => 'id']
+    ]);
+});
 
 // Register Users
 Route::resource('register-users', RegisterController::class, [
@@ -40,11 +48,6 @@ Route::resource('register-users', RegisterController::class, [
     ]);
 
 // Movies
-
-
-
-// Dashboard
-
 
 
 // Fallback
