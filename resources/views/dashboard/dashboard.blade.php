@@ -11,7 +11,7 @@
 
     @section('content')
 
-        <h5>Hello {{ Auth::user()->name }}, welcome to the Dashboard.</h5>
+        <h5>Hello {{ Auth::user()->name }}, welcome to the your dashboard.</h5>
 
     @endsection
 

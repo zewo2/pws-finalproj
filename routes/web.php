@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UtilController;
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MaintenanceController;
@@ -19,7 +20,7 @@ Route::get('/laraveldocs', [HomeController::class, 'laraveldocs'])-> name('world
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])-> name('dashboard.dashboard')->middleware('auth');
 
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'admin_or_editor'])->group(function () {
     Route::get('/maintenance-dashboard', [MaintenanceController::class, 'index'])
          ->name('maintenance.dashboard');
 });
@@ -47,7 +48,20 @@ Route::resource('register-users', RegisterController::class, [
     ]
     ]);
 
-// Movies
+// Users com auth
+Route::middleware(['auth', 'admin_or_editor'])->group(function () {
+    Route::resource('maintenance-movies', MovieController::class, [
+        'names' => [
+            'index' => 'movies.all',
+            'create' => 'movies.add',
+            'store' => 'movies.create',
+            'show' => 'movies.show',
+            'update' => 'movies.update',
+            'destroy' => 'movies.delete',
+        ],
+        'parameters' => ['maintenance-movies' => 'id']
+    ]);
+});
 
 
 // Fallback

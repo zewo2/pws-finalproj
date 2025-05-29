@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
@@ -11,7 +15,18 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
+        $search = request()->search;
+
+        $moviesFromDB = DB::table('movies');
+
+        if($search) {
+            $moviesFromDB = $moviesFromDB->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('genre', 'LIKE', "%{$search}%");
+        }
+
+        $moviesFromDB = $moviesFromDB->get();
+
+        return view('movies.movies_all', compact('moviesFromDB'));
     }
 
     /**
@@ -19,7 +34,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.movies_add');
     }
 
     /**
@@ -27,7 +42,26 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:50',
+            'poster' => 'image',
+            'genre' => 'required|max:10',
+            'director' => 'required|max:25'
+        ]);
+
+        $movieData = [
+            'title' => $request->title,
+            'genre' => $request->genre,
+            'director' => $request->director,
+        ];
+
+        if ($request->hasFile('poster')) {
+            $movieData['poster'] = Storage::putFile('moviePosters', $request->poster);
+        }
+
+        Movie::create($movieData);
+
+        return redirect()->route('movies.all')->with('message', 'Movie successfully created!');
     }
 
     /**
@@ -35,7 +69,11 @@ class MovieController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $movie = DB::table('movies')
+            ->where('id', $id)
+            ->first();
+
+        return view('movies.movies_show', compact('movie'));
     }
 
     /**
@@ -43,7 +81,11 @@ class MovieController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $movie = DB::table('movies')
+            ->where('id', $id)
+            ->first();
+
+        return view('movies.movies_edit', compact('movie'));
     }
 
     /**
@@ -51,7 +93,28 @@ class MovieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:50',
+            'poster' => 'image',
+            'genre' => 'required|max:10',
+            'director' => 'required|max:25'
+        ]);
+
+        $updateData = [
+            'title' => $request->title,
+            'genre' => $request->genre,
+            'director' => $request->director,
+        ];
+
+        if ($request->hasFile('poster')) {
+            $updateData['poster'] = Storage::putFile('moviePosters', $request->poster);
+        }
+
+        DB::table('movies')
+            ->where('id', $id)
+            ->update($updateData);
+
+        return redirect()->route('movies.all')->with('message', 'Movie sucessfully updated!');
     }
 
     /**
@@ -59,6 +122,14 @@ class MovieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('tasks')
+            ->where('id', $id)
+            ->delete();
+
+        DB::table('users')
+            ->where('id', $id)
+            ->delete();
+
+        return back();
     }
 }

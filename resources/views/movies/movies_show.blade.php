@@ -8,7 +8,7 @@
 
 <body>
 
-    @extends('layouts.fe_master')
+    @extends('layouts.be_master')
 
     @section('content')
 
@@ -26,9 +26,9 @@
         <input type="hidden" name="id" value="{{$movie->id}}">
 
         <div class="mb-3">
-            <label for="InputName1" class="form-label">Title</label>
-            <input name="name" value="{{$movie->title}}" type="text" class="form-control" id="InputName1" required>
-            @error('name')
+            <label for="InputTitle1" class="form-label">Title</label>
+            <input name="title" value="{{$movie->title}}" type="text" class="form-control" id="InputTitle1" required>
+            @error('title')
                 <div class="text-danger">Invalid Title</div>
             @enderror
         </div>
@@ -43,9 +43,31 @@
         {{-- disabled não manda para o backend
         no caso de ser o dado necessário para verif, usar o readonly pois este manda para o backend --}}
         <div class="mb-3">
-            <label for="Inputgenre1" class="form-label">Genre</label>
-            <input name="genrel" value="{{$movie->genre}}" disabled type="text" class="form-control" id="Inputgenre1" aria-describedby="emailHelp" required>
-            <div id="genreHelp" class="form-text">Invalid Genre</div>
+            <label for="genreSelect" class="form-label">Genre</label>
+            <select name="genre" class="form-select" id="genreSelect" required>
+                <option value="" disabled>Select a genre</option>
+                <option value="Action" {{ $movie->genre == 'Action' ? 'selected' : '' }}>Action</option>
+                <option value="Adventure" {{ $movie->genre == 'Adventure' ? 'selected' : '' }}>Adventure</option>
+                <option value="Comedy" {{ $movie->genre == 'Comedy' ? 'selected' : '' }}>Comedy</option>
+                <option value="Drama" {{ $movie->genre == 'Drama' ? 'selected' : '' }}>Drama</option>
+                <option value="Horror" {{ $movie->genre == 'Horror' ? 'selected' : '' }}>Horror</option>
+                <option value="Sci-Fi" {{ $movie->genre == 'Sci-Fi' ? 'selected' : '' }}>Sci-Fi</option>
+                <option value="Thriller" {{ $movie->genre == 'Thriller' ? 'selected' : '' }}>Thriller</option>
+                <option value="Romance" {{ $movie->genre == 'Romance' ? 'selected' : '' }}>Romance</option>
+                <option value="Animation" {{ $movie->genre == 'Animation' ? 'selected' : '' }}>Animation</option>
+                <option value="Documentary" {{ $movie->genre == 'Documentary' ? 'selected' : '' }}>Documentary</option>
+                <option value="Other" {{ $movie->genre == 'Other' ? 'selected' : '' }}>Other</option>
+            </select>
+            @error('genre')
+                <div class="text-danger">Invalid genre</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="Inputdirector1" class="form-label">Director</label>
+            <input name="director" value="{{$movie->director}}" type="text" class="form-control" id="Inputdirector1" aria-describedby="emailHelp" required>
+            @error('director')
+                <div class="text-danger">Invalid Director</div>
+            @enderror
         </div>
         <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="Check1" required>

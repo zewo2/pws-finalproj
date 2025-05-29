@@ -9,7 +9,7 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ asset('css/be_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('world.home') }}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('world.home') }}">Home</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -40,11 +40,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Tasks
+                        Movies
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('world.movies_all') }}">Movie List</a></li>
-                        <li><a class="dropdown-item" href="{{ route('movies.movies_add') }}">Add Movie</a></li>
+                        <li><a class="dropdown-item" href="{{ route('movies.all') }}">Movie List</a></li>
+                        <li><a class="dropdown-item" href="{{ route('movies.add') }}">Add Movie</a></li>
                     </ul>
                 </li>
             </ul>

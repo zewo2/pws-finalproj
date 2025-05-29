@@ -7,7 +7,7 @@
 
 <body>
 
-    @extends('layouts.fe_master')
+    @extends('layouts.be_master')
 
     @section('content')
         <h1 style="text-align: center">User Creation Form</h1>
