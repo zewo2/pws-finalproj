@@ -58,27 +58,11 @@ table, th, td {
     text-align: center;
 }
 
-table {
-    border: 1px solid lightgrey;
-    box-shadow: 0 0 5px black;
-    border-radius: 10px;
+.btn-dashboard {
+    background: rgb(126, 1, 1)!important;
+    color: white!important;
 }
-
-table.centertable {
-    background-color: lightblue;
-    width: 75%;
-    margin: 0px auto;
-}
-
-/* td:hover {
-    background-color: #e71919;
-    color: #000000;
-} */
-
-th {
-    background-color: lightsalmon;
-}
-
-td {
-    background-color: white;
+.btn-dashboard:hover {
+    background: rgb(87, 1, 1)!important;
+    color: white!important;
 }

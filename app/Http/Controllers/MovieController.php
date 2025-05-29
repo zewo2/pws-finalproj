@@ -54,7 +54,7 @@ class MovieController extends Controller
         ]);
 
         if ($request->hasFile('poster')) {
-            $validated['poster'] = $request->file('poster')->store('movie-posters');
+            $validated['poster'] = $request->file('poster')->store('moviePosters');
         }
 
         Movie::create($validated);
@@ -109,7 +109,7 @@ class MovieController extends Controller
             if ($movie->poster) {
                 Storage::delete($movie->poster);
             }
-            $validated['poster'] = $request->file('poster')->store('movie-posters');
+            $validated['poster'] = $request->file('poster')->store('moviePosters');
         }
 
         $movie->update($validated);

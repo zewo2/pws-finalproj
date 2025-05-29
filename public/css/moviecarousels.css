@@ -1,0 +1,64 @@
+.multi-item-carousel .carousel-inner {
+    padding: 20px 0;
+}
+.multi-item-carousel .carousel-item {
+    transition: transform 0.5s ease;
+}
+.multi-item-carousel .movie-card {
+    margin: 0 10px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+.multi-item-carousel .movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.multi-item-carousel .movie-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.movie-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    color: white;
+    padding: 15px;
+}
+.movie-info h5 {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+.movie-info .year {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+.movie-info .rating {
+    color: #ffc107;
+    font-weight: bold;
+}
+.genre-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+.genre-tab {
+    padding: 8px 15px;
+    margin: 0 5px 10px;
+    background: #343a40;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.genre-tab.active {
+    background: darkred;
+}
+.genre-tab:hover {
+    background: rgb(83, 1, 1);
+}

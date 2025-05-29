@@ -16,6 +16,14 @@ Route::get('/home', [HomeController::class, 'index'])-> name('world.home');
 
 Route::get('/laraveldocs', [HomeController::class, 'laraveldocs'])-> name('world.laraveldocs');
 
+Route::middleware('auth')->group(function () {
+    Route::post('/movies/{movie}/favorite', [MovieController::class, 'favorite'])
+        ->name('movies.favorite');
+
+    Route::get('/movies/favorites', [MovieController::class, 'favorites'])
+        ->name('movies.favorites');
+});
+
 
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])-> name('dashboard.dashboard')->middleware('auth');
