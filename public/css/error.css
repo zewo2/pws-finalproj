@@ -1,0 +1,88 @@
+body {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.error-container {
+    text-align: center;
+    padding: 40px;
+    max-width: 600px;
+}
+
+.error-code {
+    font-size: 120px;
+    font-weight: bold;
+    color: darkred;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.error-message {
+    font-size: 28px;
+    margin: 20px 0;
+    color: #e0e0e0;
+}
+
+.error-description {
+    font-size: 16px;
+    color: #adb5bd;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.btn-home {
+    background: darkred;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+    margin: 0 10px;
+}
+
+.btn-home:hover {
+    background: rgb(87, 1, 1);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(139, 0, 0, 0.6);
+}
+
+.btn-secondary {
+    background: #495057;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    margin: 0 10px;
+}
+
+.btn-secondary:hover {
+    background: #343a40;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+.icon-404 {
+    font-size: 80px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.button-group {
+    margin-top: 30px;
+}

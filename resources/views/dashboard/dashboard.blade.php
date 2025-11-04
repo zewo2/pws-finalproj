@@ -22,8 +22,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 text-center">
-                                @if(Auth::user()->photo)
-                                    <img src="{{ asset('storage/' . Auth::user()->photo) }}"
+                                @if(Auth::user()->user_photo)
+                                    <img src="{{ asset('storage/' . Auth::user()->user_photo) }}"
                                          alt="{{ Auth::user()->name }}"
                                          class="rounded-circle img-fluid mb-3"
                                          style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #31353a;">

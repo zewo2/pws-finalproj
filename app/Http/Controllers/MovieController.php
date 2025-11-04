@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
@@ -148,9 +146,7 @@ class MovieController extends Controller
      */
     public function edit(string $id)
     {
-        $movie = DB::table('movies')
-            ->where('id', $id)
-            ->first();
+        $movie = Movie::findOrFail($id);
 
         return view('movies.movies_edit', compact('movie'));
     }
@@ -190,14 +186,16 @@ class MovieController extends Controller
      */
     public function destroy(string $id)
     {
-        DB::table('tasks')
-            ->where('id', $id)
-            ->delete();
+        $movie = Movie::findOrFail($id);
 
-        DB::table('users')
-            ->where('id', $id)
-            ->delete();
+        // Delete the poster file if it exists
+        if ($movie->poster) {
+            Storage::delete($movie->poster);
+        }
 
-        return back();
+        // Delete the movie
+        $movie->delete();
+
+        return redirect()->route('movies.all')->with('message', 'Movie deleted successfully!');
     }
 }

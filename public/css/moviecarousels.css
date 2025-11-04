@@ -20,24 +20,28 @@
     height: 300px;
     object-fit: cover;
 }
-.movie-info {
+.multi-item-carousel .movie-card .movie-info {
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: rgba(91, 91, 91, 0.6);
+    backdrop-filter: blur(1px);
     color: white;
-    padding: 15px;
+    padding: 10px;
 }
-.movie-info h5 {
+.multi-item-carousel .movie-card .movie-info h5 {
     margin-bottom: 5px;
     font-size: 1.1rem;
 }
-.movie-info .year {
+.multi-item-carousel .movie-card .movie-info .d-flex {
+    display: flex;
+}
+.multi-item-carousel .movie-card .movie-info .year {
     font-size: 0.9rem;
     opacity: 0.8;
 }
-.movie-info .rating {
+.multi-item-carousel .movie-card .movie-info .rating {
     color: #ffc107;
     font-weight: bold;
 }

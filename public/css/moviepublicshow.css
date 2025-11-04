@@ -4,6 +4,15 @@
             padding: 20px;
             color: white;
         }
+        .synopsis-section {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 80px;
+        }
+        .trailer-section {
+            position: relative;
+            z-index: 2;
+        }
         .movie-header {
             display: flex;
             flex-wrap: wrap;
@@ -39,8 +48,12 @@
             font-size: 1.2rem;
         }
         .movie-trailer {
-            margin: 40px 0;
-            padding-top: 15%;
+            margin: 0;
+            padding: 0;
+        }
+        .movie-trailer h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
         }
         .trailer-container {
             position: relative;
@@ -81,6 +94,18 @@
         .movie-description {
             line-height: 1.6;
             margin-bottom: 30px;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(40,40,40,0.4) 100%);
+            border-radius: 8px;
+            border-left: 4px solid darkred;
+        }
+        .movie-description h3 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        .movie-description p {
+            color: #e0e0e0;
         }
         @media (max-width: 768px) {
             .movie-header {

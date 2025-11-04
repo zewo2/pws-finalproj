@@ -14,8 +14,6 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index'])-> name('world.home');
 
-Route::get('/laraveldocs', [HomeController::class, 'laraveldocs'])-> name('world.laraveldocs');
-
 //Dashboard
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])-> name('dashboard.dashboard')->middleware('auth');
 
