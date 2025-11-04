@@ -38,6 +38,8 @@
                         </a>
                     @endauth
 
+                    <br>
+
                     @if($movie->description)
                         <div class="movie-description">
                             <h3>Synopsis</h3>
@@ -48,15 +50,9 @@
             </div>
 
             @if($movie->trailer_url)
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br><br><br><br><br>
+            <br><br><br><br><br>
+            <br><br><br><br><br>
 
                 <div class="movie-trailer">
                     <h2>Trailer</h2>

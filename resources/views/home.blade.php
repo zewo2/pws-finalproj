@@ -14,7 +14,7 @@
 
         <!-- Recently Added Movies Carousel -->
         <h3 class="mb-3">Recently Added</h3>
-        <div id="recentlyAddedCarousel" class="carousel slide multi-item-carousel" data-bs-ride="carousel">
+        <div id="recentlyAddedCarousel" class="carousel slide multi-item-carousel" data-bs-ride="carousel" data-bs-interval="10000" data-bs-pause="hover">
             <div class="carousel-inner">
                 @foreach ($recentlyAddedMovies->chunk(4) as $index => $moviesChunk)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
@@ -59,44 +59,46 @@
             @endforeach
         </div>
 
-        <div id="genreMoviesCarousel" class="carousel slide multi-item-carousel" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                @foreach ($genres as $index => $genre)
-                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}" data-genre="{{ $genre }}">
-                        <div class="row">
-                            @foreach ($moviesByGenre[$genre]->take(4) as $movie)
-                                <div class="col-md-3 col-6">
-                                    <div class="movie-card">
-                                        <a href="{{ route('movies.publicshow', $movie->id) }}">
-                                            <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}">
-                                            <div class="movie-info">
-                                                <h5>{{ $movie->title }}</h5>
-                                                <div class="d-flex justify-content-between">
-                                                    <span class="year">{{ date('Y', strtotime($movie->release_date)) }}</span>
-                                                    <span class="rating">★ {{ $movie->rating }}</span>
+        @foreach ($genres as $genreIndex => $genre)
+            <div id="genreMoviesCarousel-{{ Str::slug($genre) }}" class="carousel slide multi-item-carousel genre-carousel {{ $genreIndex === 0 ? '' : 'd-none' }}" data-genre="{{ $genre }}" data-bs-ride="carousel" data-bs-interval="10000" data-bs-pause="hover">
+                <div class="carousel-inner">
+                    @foreach ($moviesByGenre[$genre]->chunk(4) as $chunkIndex => $moviesChunk)
+                        <div class="carousel-item {{ $chunkIndex === 0 ? 'active' : '' }}">
+                            <div class="row">
+                                @foreach ($moviesChunk as $movie)
+                                    <div class="col-md-3 col-6">
+                                        <div class="movie-card">
+                                            <a href="{{ route('movies.publicshow', $movie->id) }}">
+                                                <img src="{{ asset('storage/' . $movie->poster) }}" alt="{{ $movie->title }}">
+                                                <div class="movie-info">
+                                                    <h5>{{ $movie->title }}</h5>
+                                                    <div class="d-flex justify-content-between">
+                                                        <span class="year">{{ date('Y', strtotime($movie->release_date)) }}</span>
+                                                        <span class="rating">★ {{ $movie->rating }}</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                            @endforeach
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#genreMoviesCarousel-{{ Str::slug($genre) }}" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#genreMoviesCarousel-{{ Str::slug($genre) }}" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#genreMoviesCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#genreMoviesCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+        @endforeach
 
         <!-- Highest Rated Movies Carousel -->
         <h3 class="mb-3 mt-5">Highest Rated</h3>
-        <div id="highestRatedCarousel" class="carousel slide multi-item-carousel" data-bs-ride="carousel">
+        <div id="highestRatedCarousel" class="carousel slide multi-item-carousel" data-bs-ride="carousel" data-bs-interval="10000" data-bs-pause="hover">
             <div class="carousel-inner">
                 @foreach ($highestRatedMovies->chunk(4) as $index => $moviesChunk)
                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">

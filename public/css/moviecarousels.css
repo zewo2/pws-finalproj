@@ -2,7 +2,7 @@
     padding: 20px 0;
 }
 .multi-item-carousel .carousel-item {
-    transition: transform 0.5s ease;
+    transition: transform 1.2s ease;
 }
 .multi-item-carousel .movie-card {
     margin: 0 10px;

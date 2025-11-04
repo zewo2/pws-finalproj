@@ -1,61 +1,215 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Movie Management System - PWS Final Project
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <a href="https://laravel.com" target="_blank">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
+  </a>
 </p>
 
-## About Laravel
+## About This Project
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This is a final project for the **PWS (Programação Web Servidor)** course at **ISTEC** - Instituto Superior de Tecnologias Avançadas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Course:** PWS - Programação Web Servidor  
+**Institution:** ISTEC  
+**Academic Year:** 2024/2025 - 1º Ano, 2º Semestre
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Overview
 
-## Learning Laravel
+A comprehensive movie management system built with Laravel 11, featuring user authentication, role-based access control, and a complete CRUD system for movie management. The application provides both a public-facing interface for browsing movies and an administrative backend for content management.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Features
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Public Features
+- **Movie Browsing**: View all available movies with pagination
+- **Advanced Filtering**: Search by title and filter by genre
+- **Sorting Options**: Sort movies by newest or oldest
+- **Movie Details**: View detailed information about each movie
+- **Favorites System**: Authenticated users can save favorite movies
+- **Responsive Design**: Mobile-friendly interface
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Administrative Features
+- **User Management**: Complete CRUD operations for users (Admin only)
+- **Movie Management**: Add, edit, and delete movies (Admin & Editor)
+- **Role-Based Access Control**: Three user types (Admin, Editor, User)
+- **Dashboard**: Separate dashboards for users and maintenance staff
+- **User Registration**: Public registration system with email verification support
 
-## Laravel Sponsors
+### Authentication & Authorization
+- **Laravel Fortify**: Secure authentication system
+- **Two-Factor Authentication**: Optional 2FA support
+- **Middleware Protection**: Route protection based on user roles
+- **Custom Middleware**: `admin` and `admin_or_editor` middleware
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Technical Stack
 
-### Premium Partners
+- **Framework**: Laravel 12.13
+- **PHP**: 8.2+
+- **Database**: MySQL/MariaDB
+- **Frontend**: Blade Templates, Custom CSS
+- **Authentication**: Laravel Fortify
+- **Asset Bundling**: Vite
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+## Database Structure
 
-## Contributing
+### Main Tables
+- `users` - User accounts with role management
+- `movies` - Movie catalog with metadata
+- `favs` - User favorite movies (many-to-many relationship)
+- `registers` - User registration records
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### User Roles
+- **Admin**: Full system access (user management + movie management)
+- **Editor**: Movie management access only
+- **User**: Public access + favorites management
 
-## Code of Conduct
+## Installation
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Prerequisites
+- PHP >= 8.2
+- Composer
+- MySQL/MariaDB
+- Node.js & NPM
 
-## Security Vulnerabilities
+### Setup Steps
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/zewo2/pws-finalproj.git
+   cd pws-finalproj
+   ```
+
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
+
+3. **Install Node dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Environment configuration**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+5. **Configure database**
+   
+   Edit `.env` file with your database credentials:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
+
+6. **Run migrations**
+   ```bash
+   php artisan migrate
+   ```
+
+7. **Build assets**
+   ```bash
+   npm run build
+   ```
+
+8. **Start development server**
+   ```bash
+   php artisan serve
+   ```
+
+9. **Access the application**
+   
+   Open your browser and navigate to `http://localhost:8000`
+
+## Project Structure
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── MovieController.php      # Movie CRUD operations
+│   │   ├── UserController.php       # User management
+│   │   ├── DashboardController.php  # Dashboard logic
+│   │   └── RegisterController.php   # User registration
+│   └── Middleware/                  # Custom middleware
+├── Models/
+│   ├── User.php                     # User model
+│   ├── Movie.php                    # Movie model
+│   └── Fav.php                      # Favorites model
+└── Providers/
+    └── FortifyServiceProvider.php   # Authentication setup
+
+resources/
+├── views/
+│   ├── movies/                      # Movie views
+│   ├── users/                       # User management views
+│   ├── dashboard/                   # Dashboard views
+│   └── layouts/                     # Master layouts
+└── css/                             # Custom styles
+
+routes/
+└── web.php                          # Application routes
+```
+
+## Key Routes
+
+### Public Routes
+- `/` - Home page
+- `/movies` - Browse all movies
+- `/movies/public/{movie}` - Movie details
+- `/register-users/create` - User registration
+
+### Authenticated Routes
+- `/dashboard` - User dashboard
+- `/favorites` - User's favorite movies
+- `/movies/{movie}/favorite` - Toggle favorite
+
+### Admin/Editor Routes
+- `/maintenance-dashboard` - Maintenance dashboard
+- `/all-movies` - Movie management list
+- `/maintenance-movies/*` - Movie CRUD operations
+
+### Admin Only Routes
+- `/admin-users/*` - User management CRUD
+
+## Development
+
+### Running in development mode
+```bash
+# Terminal 1: Run Laravel development server
+php artisan serve
+
+# Terminal 2: Watch and compile assets
+npm run dev
+```
+
+### Running tests
+```bash
+php artisan test
+```
+
+## Academic Context
+
+This project demonstrates the following concepts learned in the PWS course:
+
+- **MVC Architecture**: Proper separation of concerns
+- **Database Design**: Normalized database structure with relationships
+- **Authentication & Authorization**: Secure user management
+- **RESTful Routes**: Resource controllers and proper HTTP methods
+- **Blade Templating**: Dynamic content rendering
+- **Eloquent ORM**: Database queries and relationships
+- **Middleware**: Request filtering and route protection
+- **Form Validation**: Data integrity and security
+- **File Uploads**: Image storage and management
+- **Session Management**: User state persistence
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is developed for educational purposes as part of the ISTEC PWS course curriculum.
+
+Built with [Laravel](https://laravel.com) - The PHP Framework for Web Artisans.
