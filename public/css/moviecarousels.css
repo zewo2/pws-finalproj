@@ -1,8 +1,39 @@
+.multi-item-carousel {
+    position: relative;
+    padding: 0 60px;
+}
 .multi-item-carousel .carousel-inner {
     padding: 20px 0;
 }
 .multi-item-carousel .carousel-item {
     transition: transform 1.2s ease;
+}
+.multi-item-carousel .carousel-control-prev,
+.multi-item-carousel .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(139, 0, 0, 0.8);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.9;
+    z-index: 10;
+}
+.multi-item-carousel .carousel-control-prev {
+    left: -25px;
+}
+.multi-item-carousel .carousel-control-next {
+    right: -25px;
+}
+.multi-item-carousel .carousel-control-prev:hover,
+.multi-item-carousel .carousel-control-next:hover {
+    background-color: rgba(139, 0, 0, 1);
+    opacity: 1;
+}
+.multi-item-carousel .carousel-control-prev-icon,
+.multi-item-carousel .carousel-control-next-icon {
+    width: 20px;
+    height: 20px;
 }
 .multi-item-carousel .movie-card {
     margin: 0 10px;
