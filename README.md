@@ -1,4 +1,4 @@
-# Movie Management System - PWS Final Project
+# MSF Movies - PWS Final Project
 
 <p align="center">
   <a href="https://laravel.com" target="_blank">
@@ -16,7 +16,7 @@ This is a final project for the **PWS (Programação Web Servidor)** course at *
 
 ## Project Overview
 
-A comprehensive movie management system built with Laravel 11, featuring user authentication, role-based access control, and a complete CRUD system for movie management. The application provides both a public-facing interface for browsing movies and an administrative backend for content management.
+A comprehensive movie management system built with Laravel 12, featuring user authentication, role-based access control, and a complete CRUD system for movie management. The application provides both a public-facing interface for browsing movies and an administrative backend for content management.
 
 ## Features
 
